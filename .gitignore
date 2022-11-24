@@ -1,2 +1,4 @@
 .idea
 .DS_Store
+
+sh 'docker build –t devops:1.0.0 .'
