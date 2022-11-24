@@ -2,12 +2,9 @@ pipeline{
     agent any
     post{
         always{
-            def recipientProviders = [];
-            recipientProviders.add([$class: 'CulpritsRecipientProvider']);
-            recipientProviders.add([$class: 'DevelopersRecipientProvider']);
-            recipientProviders.add([$class: 'RequesterRecipientProvider']);
 
             emailext(
+                recipientProviders:[requestor()],
                 subject: 'Test mail',
                 mimetype: 'text/html',
                 to: 'lotus.b78@gmail.com',
