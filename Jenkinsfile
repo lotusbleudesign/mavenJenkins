@@ -2,13 +2,11 @@ pipeline{
     agent any
     post{
         always{
-
             emailext(
-                recipientProviders:[requestor()],
                 subject: 'Test mail',
                 mimetype: 'text/html',
                 to: 'lotus.b78@gmail.com',
-                recipientProviders: recipientProviders,
+                recipientProviders:[requestor()],
                 body: 'Mail envoyé lors du build'
             )
         }
