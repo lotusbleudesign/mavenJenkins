@@ -4,7 +4,6 @@ pipeline{
         always{
             emailext(
                 subject: 'Test mail',
-                mimetype: 'text/html',
                 to: 'lotus.b78@gmail.com',
                 recipientProviders:[requestor()],
                 body: 'Mail envoyé lors du build'
