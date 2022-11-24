@@ -2,6 +2,12 @@ pipeline{
     agent any
         stages{
 
+            post{
+                always{
+                    emailext body: 'Ce Build $BUILD_NUMBER a échoué',
+                    recipientProviders:[requestor()], subject: 'build', to:'lotus.b78@gmail.com'
+                }
+            }
             stage("Init"){
                 steps{
                     echo 'Lancement en cours ...'
