@@ -2,8 +2,11 @@ pipeline{
     agent any
 
     post{
+        always {
+                echo 'Test sending mail..'
+            }
         failure{
-            emailext body: 'Ce Build $BUILD_NUMBER a échoué',
+            mail emailext body: 'Ce Build $BUILD_NUMBER a échoué',
             recipientProviders:[requestor()], subject: 'build', to:'lotus.b78@gmail.com'
         }
     }
