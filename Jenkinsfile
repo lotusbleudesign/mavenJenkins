@@ -11,7 +11,7 @@ pipeline{
 
 
             stage("Init"){
-                steps{
+                stepss{
                     echo 'Lancement en cours ...'
                 }
             }
