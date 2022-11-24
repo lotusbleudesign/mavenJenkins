@@ -1,15 +1,22 @@
 pipeline{
     agent any
-
     post{
         always{
-            emailext body: 'Ce Build $BUILD_NUMBER a échoué',
-            recipientProviders:[requestor()], subject: 'build', to:'lotus.b78@gmail.com'
+            def recipientProviders = [];
+            recipientProviders.add([$class: 'CulpritsRecipientProvider']);
+            recipientProviders.add([$class: 'DevelopersRecipientProvider']);
+            recipientProviders.add([$class: 'RequesterRecipientProvider']);
+
+            emailext(
+                subject: 'Test mail',
+                mimetype: 'text/html',
+                to: 'lotus.b78@gmail.com',
+                recipientProviders: recipientProviders,
+                body: 'Mail envoyé lors du build'
+            )
         }
     }
         stages{
-
-
             stage("Init"){
                 steps{
                     echo 'Lancement en cours ...'
