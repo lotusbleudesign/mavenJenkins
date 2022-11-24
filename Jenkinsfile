@@ -5,17 +5,16 @@ pipeline{
         always {
                 echo 'Test sending mail..'
             }
-       always {
-           emailext body: 'A Test EMail : Ce Build $BUILD_NUMBER a échoué',
-           recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test',  to:'lotus.b78@gmail.com',
-       }
-
+        always{
+            mail body: 'Build $BUILD_NUMBER',
+            recipientProviders:[requestor()], subject: 'build', to:'lotus.b78@gmail.com'
+        }
     }
         stages{
 
 
             stage("Init"){
-                stepss{
+                steps{
                     echo 'Lancement en cours ...'
                 }
             }
