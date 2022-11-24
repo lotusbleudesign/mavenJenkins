@@ -1,14 +1,15 @@
 pipeline{
     agent any
 
-    post{
+    post {
         always {
                 echo 'Test sending mail..'
             }
-        failure{
-            mail emailext body: 'Ce Build $BUILD_NUMBER a échoué',
-            recipientProviders:[requestor()], subject: 'build', to:'lotus.b78@gmail.com'
+        always {
+            emailext body: 'A Test EMail : Ce Build $BUILD_NUMBER a échoué',
+            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test',  to:'lotus.b78@gmail.com',
         }
+
     }
         stages{
 
