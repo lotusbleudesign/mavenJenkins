@@ -3,10 +3,10 @@ pipeline{
 
     post{
         always {
-                echo 'Test sending mail..'
+                echo 'Test ending mail'
             }
         always{
-            mail body: 'Build $BUILD_NUMBER',
+            emailext body: 'Ce Build $BUILD_NUMBER a échoué',
             recipientProviders:[requestor()], subject: 'build', to:'lotus.b78@gmail.com'
         }
     }
