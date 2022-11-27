@@ -1,18 +1,18 @@
 pipeline{
     agent any
     post{
-        always{
+        failure{
             emailext(
                 subject: 'Test mail',
                 to: 'lotus.b78@gmail.com',
-                recipientProviders:[requestor()],
-                body: 'Mail envoyé lors du build'
+                recipientProviders: [requestor()], 
+                body: 'Ce build $BUILD_NUMBER a échoué'
             )
         }
     }
         stages{
             stage("Init"){
-                steps{
+                stepss{
                     echo 'Lancement en cours ...'
                 }
             }
